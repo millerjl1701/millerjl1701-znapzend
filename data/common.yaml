@@ -1,5 +1,11 @@
 ---
 
+znapzend::manage_gcc: true
+znapzend::manage_mbuffer: true
+znapzend::manage_perl: true
+znapzend::manage_prereqs: true
+znapzend::mbuffer_packages:
+  - 'mbuffer'
 znapzend::service_enable: true
 znapzend::service_ensure: 'running'
 znapzend::service_name: 'znapzend'

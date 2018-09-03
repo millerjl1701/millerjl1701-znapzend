@@ -24,15 +24,101 @@ describe 'znapzend' do
           it { is_expected.to contain_class('epel') }
 
           it { is_expected.to contain_package('gcc').with_ensure('present') }
+          it { is_expected.to contain_package('gcc-c++').with_ensure('present') }
           it { is_expected.to contain_package('mbuffer').with_ensure('present') }
           it { is_expected.to contain_package('perl-core').with_ensure('present') }
 
-          it { is_expected.to contain_service('znapzend').with(
-            'ensure'     => 'running',
-            'enable'     => 'true',
-            'hasstatus'  => 'true',
-            'hasrestart' => 'true',
-          ) }
+          #it { is_expected.to contain_service('znapzend').with(
+          #  'ensure'     => 'running',
+          #  'enable'     => 'true',
+          #  'hasstatus'  => 'true',
+          #  'hasrestart' => 'true',
+          #) }
+        end
+
+        context "znapzend class with gcc_packages set to [ foo, bar]" do
+          let(:params){
+            {
+              :gcc_packages => [ 'foo', 'bar', ],
+            }
+          }
+
+          it { is_expected.to contain_package('foo') }
+          it { is_expected.to contain_package('bar') }
+        end
+
+        context "znapzend class with manage_epel set to false" do
+          let(:params){
+            {
+              :manage_epel => false,
+            }
+          }
+
+          it { is_expected.to_not contain_class('epel') }
+        end
+
+        context "znapzend class with manage_gcc set to false" do
+          let(:params){
+            {
+              :manage_gcc => false,
+            }
+          }
+
+          it { is_expected.to_not contain_package('gcc') }
+        end
+
+        context "znapzend class with manage_mbuffer set to false" do
+          let(:params){
+            {
+              :manage_mbuffer => false,
+            }
+          }
+
+          it { is_expected.to_not contain_package('mbuffer') }
+        end
+
+        context "znapzend class with manage_perl set to false" do
+          let(:params){
+            {
+              :manage_perl => false,
+            }
+          }
+
+          it { is_expected.to_not contain_package('perl-core') }
+        end
+
+        context "znapzend class with manage_prereqs set to false" do
+          let(:params){
+            {
+              :manage_prereqs => false,
+            }
+          }
+
+          it { is_expected.to_not contain_package('gcc') }
+          it { is_expected.to_not contain_package('mbuffer') }
+          it { is_expected.to_not contain_package('perl-core') }
+        end
+
+        context "znapzend class with mbuffer_packages set to [ foo, bar]" do
+          let(:params){
+            {
+              :mbuffer_packages => [ 'foo', 'bar', ],
+            }
+          }
+
+          it { is_expected.to contain_package('foo') }
+          it { is_expected.to contain_package('bar') }
+        end
+
+        context "znapzend class with perl_packages set to [ foo, bar]" do
+          let(:params){
+            {
+              :perl_packages => [ 'foo', 'bar', ],
+            }
+          }
+
+          it { is_expected.to contain_package('foo') }
+          it { is_expected.to contain_package('bar') }
         end
       end
     end

@@ -13,13 +13,26 @@ describe 'znapzend class' do
       apply_manifest(pp, :catch_changes  => true)
     end
 
-    describe package('znapzend') do
+    describe yumrepo('epel') do
+      it { should exist }
+      it { should be_enabled }
+    end
+
+    describe package('gcc') do
       it { should be_installed }
     end
 
-    describe service('znapzend') do
-      it { should be_enabled }
-      it { should be_running }
+    describe package('mbuffer') do
+      it { should be_installed }
     end
+
+    describe package('perl-core') do
+      it { should be_installed }
+    end
+
+    #describe service('znapzend') do
+    #  it { should be_enabled }
+    #  it { should be_running }
+    #end
   end
 end

@@ -1,3 +1,8 @@
 ---
 
-{}
+znapzend::manage_epel: true
+znapzend::gcc_packages:
+  - 'gcc'
+  - 'gcc-c++'
+znapzend::perl_packages:
+  - 'perl-core'
