@@ -1,0 +1,7 @@
+---
+
+znapzend::package_ensure: 'present'
+znapzend::package_name: 'znapzend'
+znapzend::service_enable: true
+znapzend::service_ensure: 'running'
+znapzend::service_name: 'znapzend'
