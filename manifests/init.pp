@@ -16,15 +16,22 @@ class znapzend (
   Enum['running', 'stopped'] $service_ensure = 'running',
   String                     $service_name   = 'znapzend',
   ) {
-  case $::operatingsystem {
-    'RedHat', 'CentOS': {
-      contain znapzend::install
-      contain znapzend::config
-      contain znapzend::service
+  case $::osfamily {
+    'RedHat': {
+      case $::operatingsystemmajrelease {
+        '6', '7': {
+          contain znapzend::install
+          contain znapzend::config
+          contain znapzend::service
 
-      Class['znapzend::install']
-      -> Class['znapzend::config']
-      ~> Class['znapzend::service']
+          Class['znapzend::install']
+          -> Class['znapzend::config']
+          ~> Class['znapzend::service']
+        }
+        default: {
+          fail("${::operatingsystem} ${::operatingsystemmajrelease} not supported")
+        }
+      }
     }
     default: {
       fail("${::operatingsystem} not supported")
