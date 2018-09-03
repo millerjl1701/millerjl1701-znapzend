@@ -10,8 +10,6 @@
 # @param service_name Specifies the name of the service to manage. Default value: 'znapzend'.
 #
 class znapzend (
-  String                     $package_ensure = 'present',
-  String                     $package_name   = 'znapzend',
   Boolean                    $service_enable = true,
   Enum['running', 'stopped'] $service_ensure = 'running',
   String                     $service_name   = 'znapzend',
