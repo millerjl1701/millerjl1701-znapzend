@@ -1,0 +1,5 @@
+---
+
+znapzend::gcc_packages:
+  - 'gcc'
+  - 'build-essential'
