@@ -10,17 +10,24 @@
 # @param service_name Specifies the name of the service to manage. Default value: 'znapzend'.
 #
 class znapzend (
-  Array                      $gcc_packages     = [ 'gcc', 'gcc-c++', ],
-  Boolean                    $manage_epel      = true,
-  Boolean                    $manage_gcc       = true,
-  Boolean                    $manage_mbuffer   = true,
-  Boolean                    $manage_perl      = true,
-  Boolean                    $manage_prereqs   = true,
-  Array                      $mbuffer_packages = [ 'mbuffer', ],
-  Array                      $perl_packages    = [ 'perl-core', ],
-  Boolean                    $service_enable   = true,
-  Enum['running', 'stopped'] $service_ensure   = 'running',
-  String                     $service_name     = 'znapzend',
+  Array                      $gcc_packages                 = [ 'gcc', 'gcc-c++', ],
+  Boolean                    $manage_epel                  = true,
+  Boolean                    $manage_gcc                   = true,
+  Boolean                    $manage_mbuffer               = true,
+  Boolean                    $manage_perl                  = true,
+  Boolean                    $manage_prereqs               = true,
+  Array                      $mbuffer_packages             = [ 'mbuffer', ],
+  Array                      $perl_packages                = [ 'perl-core', ],
+  Boolean                    $service_enable               = true,
+  Enum['running', 'stopped'] $service_ensure               = 'running',
+  String                     $service_name                 = 'znapzend',
+  Stdlib::Unixpath           $znapzend_download_location   = '/tmp',
+  String                     $znapzend_package_version     = '0.19.1',
+  Stdlib::Unixpath           $znapzend_package_extractpath = '/usr/local/src',
+  Stdlib::Httpurl            $znapzend_package_url         = "https://github.com/oetiker/znapzend/releases/download/v${znapzend_package_version}/znapzend-${znapzend_package_version}.tar.gz",
+  Stdlib::Unixpath           $znapzend_install_prefix      = "/opt/znapzend-${znapzend_package_version}",
+  Array                      $znapzend_installed_binaries  = [ 'znapzend', 'znapzendzetup', 'znapzendztatz', ],
+  Stdlib::Unixpath           $znapzend_linkpath            = '/usr/local/bin',
   ) {
   case $::osfamily {
     'RedHat': {

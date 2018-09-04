@@ -22,12 +22,40 @@ describe 'znapzend class' do
       it { should be_installed }
     end
 
+    describe package('gcc-c++') do
+      it { should be_installed }
+    end
+
     describe package('mbuffer') do
       it { should be_installed }
     end
 
     describe package('perl-core') do
       it { should be_installed }
+    end
+
+    describe file('/usr/local/src/znapzend-0.19.1') do
+      it { should be_directory }
+    end
+
+    describe file('/usr/local/src/znapzend-0.19.1/config.status') do
+      it { should be_file }
+    end
+
+    describe file('/opt/znapzend-0.19.1/bin/znapzend') do
+      it { should be_file }
+    end
+
+    describe file('/usr/local/bin/znapzend') do
+      it { should be_symlink }
+    end
+
+    describe file('/usr/local/bin/znapzendzetup') do
+      it { should be_symlink }
+    end
+
+    describe file('/usr/local/bin/znapzendztatz') do
+      it { should be_symlink }
     end
 
     #describe service('znapzend') do

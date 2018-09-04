@@ -9,3 +9,11 @@ znapzend::mbuffer_packages:
 znapzend::service_enable: true
 znapzend::service_ensure: 'running'
 znapzend::service_name: 'znapzend'
+znapzend::znapzend_download_location: '/tmp'
+znapzend::znapzend_package_version: '0.19.1'
+znapzend::znapzend_package_extractpath: '/usr/local/src'
+znapzend::znapzend_installed_binaries:
+  - 'znapzend'
+  - 'znapzendzetup'
+  - 'znapzendztatz'
+znapzend::znapzend_linkpath: '/usr/local/bin'

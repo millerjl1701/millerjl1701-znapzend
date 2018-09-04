@@ -28,6 +28,43 @@ describe 'znapzend' do
           it { is_expected.to contain_package('mbuffer').with_ensure('present') }
           it { is_expected.to contain_package('perl-core').with_ensure('present') }
 
+          it { is_expected.to contain_file('/usr/local/src').with_ensure('directory') }
+          it { is_expected.to contain_archive('znapzend-0.19.1.tar.gz').with(
+            'path'         => '/tmp/znapzend-0.19.1.tar.gz',
+            'provider'     => 'wget',
+            'source'       => 'https://github.com/oetiker/znapzend/releases/download/v0.19.1/znapzend-0.19.1.tar.gz',
+            'extract'      => 'true',
+            'extract_path' => '/usr/local/src',
+            'creates'      => '/usr/local/src/znapzend-0.19.1',
+            'require'      => 'File[/usr/local/src]',
+          ) }
+          it { is_expected.to contain_exec('znapzend_source_configure').with(
+            'command' => './configure --prefix=/opt/znapzend-0.19.1',
+            'cwd'     => '/usr/local/src/znapzend-0.19.1',
+            'creates' => '/usr/local/src/znapzend-0.19.1/config.status',
+          ) }
+          it { is_expected.to contain_exec('znapzend_make_and_install').with(
+            'command' => 'make && make install',
+            'cwd'     => '/usr/local/src/znapzend-0.19.1',
+            'creates' => '/opt/znapzend-0.19.1/bin/znapzend',
+          ) }
+          it { is_expected.to contain_file('/usr/local/bin/znapzend').with(
+            'ensure'  => 'link',
+            'target'  => '/opt/znapzend-0.19.1/bin/znapzend',
+            'require' => 'Exec[znapzend_make_and_install]',
+          ) }
+          it { is_expected.to contain_file('/usr/local/bin/znapzendzetup').with(
+            'ensure'  => 'link',
+            'target'  => '/opt/znapzend-0.19.1/bin/znapzendzetup',
+            'require' => 'Exec[znapzend_make_and_install]',
+          ) }
+          it { is_expected.to contain_file('/usr/local/bin/znapzendztatz').with(
+            'ensure'  => 'link',
+            'target'  => '/opt/znapzend-0.19.1/bin/znapzendztatz',
+            'require' => 'Exec[znapzend_make_and_install]',
+          ) }
+
+
           #it { is_expected.to contain_service('znapzend').with(
           #  'ensure'     => 'running',
           #  'enable'     => 'true',
