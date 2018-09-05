@@ -12,6 +12,9 @@ describe 'znapzend::imports' do
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_class('znapzend') }
 
+          it { is_expected.to contain_file('/etc/znapzend/dpool01_test1') }
+          it { is_expected.to contain_file('/etc/znapzend/dpool02_test2') }
+
         end
       end
     end
@@ -27,6 +30,7 @@ describe 'znapzend::imports' do
       end
 
       it { expect { is_expected.to contain_package('znapzend') }.to raise_error(Puppet::Error, /Nexenta not supported/) }
+
     end
   end
 end

@@ -1,0 +1,14 @@
+---
+# test for znapzend::imports
+
+lookup_options:
+  znapzend::imports::plans:
+    merge: hash
+
+znapzend::imports::plans:
+  'dpool01/test1':
+    src: 'source1_location'
+    dest: 'dest1_location'
+  'dpool02/test2':
+    src: 'source2_location'
+    dest: 'dest2_location'

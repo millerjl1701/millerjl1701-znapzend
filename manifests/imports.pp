@@ -15,6 +15,10 @@ class znapzend::imports (
   include ::znapzend
   
   if length($plans) {
-    # create each import
+    $plans.each |String $key, Hash $options| {
+      znapzend::import { $key:
+        options =>  $options,
+      }
+    }
   }
 }

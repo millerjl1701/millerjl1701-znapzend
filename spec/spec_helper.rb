@@ -25,6 +25,7 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.5.0') >= 0
     c.before :each do
       Puppet.settings[:strict] = :error
     end
+    c.hiera_config = File.expand_path(File.join(__FILE__, '../fixtures/hiera.yaml'))
   end
 end
 
