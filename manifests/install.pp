@@ -20,8 +20,8 @@ class znapzend::install {
   }
   exec { 'znapzend_source_configure':
     command => "./configure --prefix=${znapzend::znapzend_install_prefix}",
-    cwd => "${znapzend::znapzend_package_extractpath}/znapzend-${znapzend::znapzend_package_version}",
-    path => [ "${znapzend::znapzend_package_extractpath}/znapzend-${znapzend::znapzend_package_version}", '/bin', '/usr/bin', ],
+    cwd     => "${znapzend::znapzend_package_extractpath}/znapzend-${znapzend::znapzend_package_version}",
+    path    => [ "${znapzend::znapzend_package_extractpath}/znapzend-${znapzend::znapzend_package_version}", '/bin', '/usr/bin', ],
     creates => "${znapzend::znapzend_package_extractpath}/znapzend-${znapzend::znapzend_package_version}/config.status",
     require => Archive["znapzend-${znapzend::znapzend_package_version}.tar.gz"],
   }

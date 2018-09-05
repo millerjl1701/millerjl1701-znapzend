@@ -1,0 +1,15 @@
+[Unit]
+Description=ZnapZend - ZFS Backup System
+Documentation=man:znapzend
+<% @_service_systemd_afters.each do |after| -%>
+After=<%= after %>
+<% end -%>
+
+[Service]
+EnvironmentFile=-/etc/default/znapzend
+ExecStart=<%= @_znapzend_linkpath %>/znapzend $ZNAPZENDOPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
