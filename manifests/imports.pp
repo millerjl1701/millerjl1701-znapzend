@@ -13,7 +13,7 @@ class znapzend::imports (
   Hash $plans = {},
 ) {
   include ::znapzend
-  
+
   if length($plans) {
     $plans.each |String $key, Hash $options| {
       znapzend::import { $key:

@@ -72,6 +72,15 @@ describe 'znapzend' do
           ) }
           it { is_expected.to contain_file('/etc/default/znapzend').with_content(/ZNAPZENDOPTIONS=""/) }
 
+          it { is_expected.to contain_file('/etc/znapzend').with(
+            'ensure' => 'directory',
+            'purge'  => 'true',
+          ) }
+          it { is_expected.to contain_file('/etc/znapzend/configs').with(
+            'ensure' => 'directory',
+            'purge'  => 'true',
+          ) }
+
           if facts[:os]['family'] == 'RedHat'
             if facts[:os]['release']['major'] == '6'
               it { is_expected.to_not contain_class('systemd::systemctl::daemon_reload') }
@@ -184,6 +193,17 @@ describe 'znapzend' do
 
           it { is_expected.to contain_package('foo') }
           it { is_expected.to contain_package('bar') }
+        end
+
+        context "znapzend class with plan_confdir_purge set to false" do
+          let(:params){
+            {
+              :plan_confdir_purge => false,
+            }
+          }
+
+          it { is_expected.to contain_file('/etc/znapzend').with_purge('false') }
+          it { is_expected.to contain_file('/etc/znapzend/configs').with_purge('false') }
         end
 
         context "znapzend class with perl_packages set to [ foo, bar]" do

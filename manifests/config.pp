@@ -15,6 +15,11 @@ class znapzend::config {
     mode    => '0644',
     content => template($znapzend::service_options_template),
   }
+
+  file { $znapzend::plan_confdir_setup:
+    ensure => directory,
+    purge  => $znapzend::plan_confdir_purge,
+  }
   case $::osfamily {
     'RedHat': {
       case $::operatingsystemmajrelease {

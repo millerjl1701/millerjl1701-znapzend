@@ -11,10 +11,23 @@ describe 'znapzend::imports' do
         context  "params via hiera" do
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_class('znapzend') }
+          
+          it { is_expected.to contain_znapzend__import('tank/home') }
 
-          it { is_expected.to contain_file('/etc/znapzend/dpool01_test1') }
-          it { is_expected.to contain_file('/etc/znapzend/dpool02_test2') }
-
+          it { is_expected.to contain_file('/etc/znapzend/configs/tank_home.conf').with(
+            'ensure'  => 'present',
+            'mode'    => '0644',
+            'owner'   => 'root',
+            'group'   => 'root',
+            'require' => 'File[/etc/znapzend/configs]',
+          ) }
+          it { is_expected.to contain_exec('znapzend_import_tank_home').with(
+            'command'     => 'cat /etc/znapzend/configs/tank_home.conf | znapzendzetup import --write tank/home',
+            'subscribe'   => 'File[/etc/znapzend/configs/tank_home.conf]',
+            'refreshonly' => 'true',
+            'onlyif'      => 'test -e /tank/home',
+            'notify'      => 'Service[znapzend]',
+          ) }
         end
       end
     end

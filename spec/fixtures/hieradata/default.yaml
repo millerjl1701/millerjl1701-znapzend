@@ -6,9 +6,15 @@ lookup_options:
     merge: hash
 
 znapzend::imports::plans:
-  'dpool01/test1':
-    src: 'source1_location'
-    dest: 'dest1_location'
-  'dpool02/test2':
-    src: 'source2_location'
-    dest: 'dest2_location'
+  'tank/home':
+    enabled: 'on'
+    src: 'tank/home'
+    src_plan: '7d=>1h,30d=>4h,90d=>1d'
+    dst_0: 'backup/home'
+    dst_0_plan: '7d=>1h,30d=>4h,90d=>1d,1y=>1w,10y=>1month'
+    mbuffer: 'off'
+    mbuffer_size: '1G'
+    post_znap_cmd: 'off'
+    pre_znap_cmd: 'off'
+    recursive: 'off'
+    tsformat: '%Y-%m-%d-%H%M%S'

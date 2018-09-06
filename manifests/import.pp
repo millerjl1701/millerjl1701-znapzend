@@ -10,21 +10,23 @@ define znapzend::import (
 ) {
   include ::znapzend
 
-  $filename = regsubst("${pool}/${filesystem}",'\/','_','G')
+  $filesystem = $title
+  $filename = regsubst($title,'\/','_','G')
 
-  file { "/root/znapzend_configs/${filename}.conf":
+  file { "${znapzend::plan_confdir}/${filename}.conf":
     ensure  => 'present',
-    mode    => '600',
-    owner   => '0',
-    group   => '0',
-    content => template('znapzend/znapzend-template.erb'),
+    mode    => $znapzend::plan_conffile_mode,
+    owner   => 'root',
+    group   => 'root',
+    content => template('znapzend/plan_conffile_template.erb'),
+    require => File[$znapzend::plan_confdir],
   }
   exec { "znapzend_import_${filename}":
-    path =>  ["/usr/bin", "/bin", "/sbin", "/usr/sbin", "/usr/local/bin", "/usr/local/sbin", "/opt/znapzend/bin"],
-    command =>  "/bin/cat /root/znapzend_configs/${filename}.conf | znapzendzetup import --write ${pool}/${filesystem}",
-    subscribe =>  [ File["/root/znapzend_configs/${filename}.conf"], Zfs["${pool}/${filesystem}"] ],
-    refreshonly =>  true,
-    onlyif =>  "/bin/test -e /${pool}/${filesystem}",
-    notify =>  Service['znapzend']
+    path        => ['/usr/bin', '/bin', '/sbin', '/usr/sbin', '/usr/local/bin', '/usr/local/sbin', ],
+    command     => "cat ${znapzend::plan_confdir}/${filename}.conf | znapzendzetup import --write ${filesystem}",
+    subscribe   => File["${znapzend::plan_confdir}/${filename}.conf"],
+    refreshonly => true,
+    onlyif      => "test -e /${filesystem}",
+    notify      => Service[$znapzend::service_name],
   }
 }
