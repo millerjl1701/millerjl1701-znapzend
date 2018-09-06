@@ -55,29 +55,23 @@ describe 'znapzend class' do
         creates => '/zdisks/disk1.img',
         require => [ File['/zdisks'], Exec['load_kernel_module'], ],
       }
-      exec { 'create_zpool_tank':
-        command => 'zpool create tank /zdisks/disk1.img /zdisks/disk2.img',
-        path    => [ '/bin', '/usr/bin', '/sbin', '/usr/sbin', ],
-        creates => '/tank',
+      zpool { 'tank':
+        ensure => present,
+        disk   => [ '/zdisks/disk1.img', '/zdisks/disk2.img', ],
         require => [ Package['zfs'], Exec['create_disks_for_zpools'], ],
       }
-      exec { 'create_zpool_backup':
-        command => 'zpool create backup /zdisks/disk3.img /zdisks/disk4.img',
-        path    => [ '/bin', '/usr/bin', '/sbin', '/usr/sbin', ],
-        creates => '/backup',
+      zpool { 'backup':
+        ensure => present,
+        disk   => [ '/zdisks/disk3.img', '/zdisks/disk4.img', ],
         require => [ Package['zfs'], Exec['create_disks_for_zpools'], ],
       }
-      exec { 'create_zfs_tank_home':
-        command => 'zfs create tank/home',
-        path    => [ '/bin', '/usr/bin', '/sbin', '/usr/sbin', ],
-        creates => '/tank/home',
-        require => Exec['create_zpool_tank'],
+      zfs { 'tank/home':
+        ensure => present,
+        require => Zpool['tank'],
       }
-      exec { 'create_zfs_backup_home':
-        command => 'zfs create backup/home',
-        path    => [ '/bin', '/usr/bin', '/sbin', '/usr/sbin', ],
-        creates => '/backup/home',
-        require => [ Exec['create_zpool_backup'], Exec['create_zfs_tank_home'], ],
+      -> zfs { 'backup/home':
+        ensure => present,
+        require => Zpool['backup'],
       }
       -> class { 'znapzend': }
       znapzend::import { 'tank/home':
