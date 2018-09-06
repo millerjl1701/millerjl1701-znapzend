@@ -1,5 +1,9 @@
 ---
 
+lookup_options:
+  znapzend::imports::plans:
+    merge: hash
+
 znapzend::manage_gcc: true
 znapzend::manage_mbuffer: true
 znapzend::manage_perl: true
