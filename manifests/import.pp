@@ -1,9 +1,9 @@
 # Define znapzend::import
 # ===========================
 #
-# Defined type for a backup plan for a  zfs dataset to be imported by znapzendzetup.
+# Defined type for a backup plan for a  zfs dataset to be imported by znapzendzetup. Note: the title of the defined type should match the zfs file system name not the mountpoint.
 #
-# @param
+# @param options A hash of znapzend options to be imported into the file system.
 #
 define znapzend::import (
   Hash              $options,

@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: znapzend
+  
+    &mdash; Documentation by YARD 0.9.16
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::znapzend";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (z)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">znapzend</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: znapzend</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      manifests/init.pp
+    </dd>
+  </dl>
+</div>
+
+  <h2>Summary</h2>
+  Main class for managing the installation and configuration of the znapzend service.
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <h1>Class: znapzend</h1>
+
+<p>Main class that includes all other classes for the znapzend module.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>gcc_packages</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[ &#39;gcc&#39;, &#39;gcc-c++&#39;, ]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies what packages are installed for the build requirements of znapzend for providing gcc/make.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_epel</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether or not the module should manage the EPEL repository.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_gcc</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether or not the module should manage the installation of gcc.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_mbuffer</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether or not the module should manage the installation of mbuffer.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_perl</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether on not the module should manage the installation of the perl-core rpm.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_prereqs</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether or not the module should manage any of the components of the preqrequites for building znapzend.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mbuffer_packages</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[ &#39;mbuffer&#39;, ]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies what package(s) should be installed on the system to provide mbuffer support for znapzend to use.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>perl_packages</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[ &#39;perl-core&#39;, ]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies what perl RPM(s) should be installed on the system for building and running znapzend.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>plan_confdir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Unixpath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/etc/znapzend/configs&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies where the znapzend backup plan configuration files will be located.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>plan_confdir_purge</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether or not the znapzend configuration directories should be purged of files not managed by puppet.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>plan_confdir_setup</span>
+      
+      
+        <span class='type'>(<tt>Array[Stdlib::Unixpath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[ &#39;/etc/znapzend&#39;, &#39;/etc/znapzend/configs&#39;, ]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>An array of directories that puppet should create on the system for where the znapzend backup plans will be stored.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>plan_conffile_mode</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;0644&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The mode that should be used for the znapzend backup plan configuration files.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>plan_conffile_template</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;znapzend/plan_conffile_template.erb&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The name of the template to use for the znapzend backup plan configuration files.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>service_enable</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether to enable the znapzend service at boot.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>service_ensure</span>
+      
+      
+        <span class='type'>(<tt>Enum['running', 'stopped']</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;running&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether the znapzend service should be running.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>service_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;znapzend&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the name of the service to manage.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>service_options</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies options placed in /etc/default/znapzend for use by the znapzend service.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>service_options_template</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;znapzend/znapzend.default.erb&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the name of the template to use for /etc/default/znapzend.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>service_systemd_afters</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[ &#39;zfs-import-cache.service&#39;, &#39;zfs-import-scan.service&#39;, ]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifes what systemd services should be started up prior to the znapzend.service.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>service_systemd_template</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;znapzend/znapzend.service.erb&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the name of the template to use for the /etc/systemd/system/znapzend.service file.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>service_sysv_template</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;znapzend/znapzend.sysv.erb&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the name of the template to use for the /etc/init.d/znapzend file.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>znapzend_download_location</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Unixpath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/tmp&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies where the znapzend archive resource should download the tar.gz file to for later extraction.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>znapzend_package_version</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;0.19.1&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the version of znapzend to download and install.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>znapzend_package_extractpath</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Unixpath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/usr/local/src&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies where the znapzend archive resource should extract the tar.gz file to for building</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>znapzend_package_url</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Httpurl</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;https://github.com/oetiker/znapzend/releases/download/v${znapzend_package_version}/znapzend-${znapzend_package_version}.tar.gz&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the URL of where to download the znapzend tar.gz file. By default, this uses the znapzend_package_version version.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>znapzend_install_prefix</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Unixpath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;/opt/znapzend-${znapzend_package_version}&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the directory to which znapzend should be installed.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>znapzend_installed_binaries</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[ &#39;znapzend&#39;, &#39;znapzendzetup&#39;, &#39;znapzendztatz&#39;, ]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies a list of znapzend programs to link.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>znapzend_linkpath</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Unixpath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/usr/local/bin&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies where the znapzend program links should be created.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 37</span>
+
+class znapzend (
+  Array                      $gcc_packages                 = [ &#39;gcc&#39;, &#39;gcc-c++&#39;, ],
+  Boolean                    $manage_epel                  = true,
+  Boolean                    $manage_gcc                   = true,
+  Boolean                    $manage_mbuffer               = true,
+  Boolean                    $manage_perl                  = true,
+  Boolean                    $manage_prereqs               = true,
+  Array                      $mbuffer_packages             = [ &#39;mbuffer&#39;, ],
+  Array                      $perl_packages                = [ &#39;perl-core&#39;, ],
+  Stdlib::Unixpath           $plan_confdir                 = &#39;/etc/znapzend/configs&#39;,
+  Boolean                    $plan_confdir_purge           = true,
+  Array[Stdlib::Unixpath]    $plan_confdir_setup           = [ &#39;/etc/znapzend&#39;, &#39;/etc/znapzend/configs&#39;, ],
+  String                     $plan_conffile_mode           = &#39;0644&#39;,
+  String                     $plan_conffile_template       = &#39;znapzend/plan_conffile_template.erb&#39;,
+  Boolean                    $service_enable               = true,
+  Enum[&#39;running&#39;, &#39;stopped&#39;] $service_ensure               = &#39;running&#39;,
+  String                     $service_name                 = &#39;znapzend&#39;,
+  String                     $service_options              = &#39;&#39;,
+  String                     $service_options_template     = &#39;znapzend/znapzend.default.erb&#39;,
+  Array                      $service_systemd_afters       = [ &#39;zfs-import-cache.service&#39;, &#39;zfs-import-scan.service&#39;, ],
+  String                     $service_systemd_template     = &#39;znapzend/znapzend.service.erb&#39;,
+  String                     $service_sysv_template        = &#39;znapzend/znapzend.sysv.erb&#39;,
+  Stdlib::Unixpath           $znapzend_download_location   = &#39;/tmp&#39;,
+  String                     $znapzend_package_version     = &#39;0.19.1&#39;,
+  Stdlib::Unixpath           $znapzend_package_extractpath = &#39;/usr/local/src&#39;,
+  Stdlib::Httpurl            $znapzend_package_url         = &quot;https://github.com/oetiker/znapzend/releases/download/v${znapzend_package_version}/znapzend-${znapzend_package_version}.tar.gz&quot;,
+  Stdlib::Unixpath           $znapzend_install_prefix      = &quot;/opt/znapzend-${znapzend_package_version}&quot;,
+  Array                      $znapzend_installed_binaries  = [ &#39;znapzend&#39;, &#39;znapzendzetup&#39;, &#39;znapzendztatz&#39;, ],
+  Stdlib::Unixpath           $znapzend_linkpath            = &#39;/usr/local/bin&#39;,
+  ) {
+  case $::osfamily {
+    &#39;RedHat&#39;: {
+      case $::operatingsystemmajrelease {
+        &#39;6&#39;, &#39;7&#39;: {
+          contain znapzend::repos
+          contain znapzend::prereqs
+          contain znapzend::install
+          contain znapzend::config
+          contain znapzend::service
+
+          Class[&#39;znapzend::repos&#39;]
+          -&gt; Class[&#39;znapzend::prereqs&#39;]
+          -&gt; Class[&#39;znapzend::install&#39;]
+          -&gt; Class[&#39;znapzend::config&#39;]
+          ~&gt; Class[&#39;znapzend::service&#39;]
+        }
+        default: {
+          fail(&quot;${::operatingsystem} ${::operatingsystemmajrelease} not supported&quot;)
+        }
+      }
+    }
+    default: {
+      fail(&quot;${::operatingsystem} not supported&quot;)
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>
