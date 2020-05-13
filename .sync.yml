@@ -10,6 +10,9 @@
 .rubocop.yml:
   selected_profile: off
 
+.travis.yml:
+  unmanaged: true
+
 appveyor.yml:
   selete: true
 
