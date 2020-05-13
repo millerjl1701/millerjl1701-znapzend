@@ -1,0 +1,33 @@
+---
+
+.gitignore:
+  required:
+    - '/.vscode/'
+
+.gitlab-ci.yml:
+  delete: true
+
+.rubocop.yml:
+  selected_profile: off
+
+appveyor.yml:
+  selete: true
+
+Gemfile:
+  optional:
+    ':system_tests':
+      - gem: beaker
+      - gem: beaker-module_install_helper
+      - gem: beaker-puppet_install_helper
+      - gem: beaker-rspec
+      - gem: beaker-vagrant
+      - gem: deep_merge
+      - gem: serverspec
+
+Rakefile:
+  default_disabled_lint_checks:
+    - '140chars'
+
+spec/spec_helper.rb:
+  mock_with: ":rspec"
+  coverage_report: true
