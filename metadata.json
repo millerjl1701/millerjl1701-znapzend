@@ -5,7 +5,7 @@
   "summary": "Puppet module for managing the installation and configuration of the znapzend service.",
   "license": "Apache-2.0",
   "source": "https://github.com/millerjl1701/millerjl1701-znapzend",
-  "project_page": "https://millerjl1701.github.io/millerjl1701-znapzend/",
+  "project_page": "https://github.com/millerjl1701/millerjl1701-znapzend",
   "issues_url": "https://github.com/millerjl1701/millerjl1701-znapzend/issues",
   "dependencies": [
     {
@@ -58,7 +58,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.7.0 < 6.0.0"
+      "version_requirement": ">= 4.7.0 < 7.0.0"
     }
   ],
   "pdk-version": "1.17.0",
