@@ -6,15 +6,15 @@
 <title>
   Puppet Class: znapzend::imports
   
-    &mdash; Documentation by YARD 0.9.16
+    &mdash; Documentation by YARD 0.9.25
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "puppet_classes::znapzend::imports";
   relpath = '../';
 </script>
@@ -77,12 +77,17 @@
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    <h1>Class znapzend::imports</h1>
+    
+<h1 id="label-Class+znapzend-3A-3Aimports">Class znapzend::imports</h1>
 
-<p>Class for collecting and created znapzend backup plans to import onto datasets. Data is either passed via the imports plans parameter or via hiera.</p>
+<p>Class for collecting and created znapzend backup plans to import onto
+datasets. Data is either passed via the imports plans parameter or via
+hiera.</p>
 
   </div>
 </div>
+
+
 <div class="tags">
   <p class="tag_title">Parameters:</p>
 <ul class="param">
@@ -99,12 +104,17 @@
       
       
         &mdash;
-        <div class='inline'><p>Hash of plans for which each will result in creation of a config file which is then imported into the properties of the zfs file system for use by znapzend. The title of each plan needs to be the zfs file system name in the form of poolname/filesystem/filesystem.</p>
+        <div class='inline'>
+<p>Hash of plans for which each will result in creation of a config file which
+is then imported into the properties of the zfs file system for use by
+znapzend. The title of each plan needs to be the zfs file system name in
+the form of poolname/filesystem/filesystem.</p>
 </div>
       
     </li>
   
 </ul>
+
 
 
 </div><div class="method_details_list">
