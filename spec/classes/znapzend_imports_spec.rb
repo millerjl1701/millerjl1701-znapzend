@@ -8,7 +8,29 @@ describe 'znapzend::imports' do
           facts
         end
 
-        context  "params via hiera" do
+        context  "with custom plans param" do
+          let :params do
+            {
+              plans: {
+                'tank/home' => {
+                  'options' => {
+                    'enabled'       => 'on',
+                    'src'           => 'tank/home',
+                    'src_plan'      => '7d=>1h,30d=>4h,90d=>1d',
+                    'dst_0'         => 'backup/home',
+                    'dst_0_plan'    => '7d=>1h,30d=>4h,90d=>1d,1y=>1w,10y=>1month',
+                    'mbuffer'       => 'off',
+                    'mbuffer_size'  => '1G',
+                    'post_znap_cmd' => 'off',
+                    'pre_znap_cmd'  => 'off',
+                    'recursive'     => 'off',
+                    'tsformat'      => '%Y-%m-%d-%H%M%S',
+                  },
+                }, 
+              },
+            }
+          end
+
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_class('znapzend') }
           
@@ -28,6 +50,7 @@ describe 'znapzend::imports' do
             'onlyif'      => 'test -e /tank/home',
             'notify'      => 'Service[znapzend]',
           ) }
+
         end
       end
     end
