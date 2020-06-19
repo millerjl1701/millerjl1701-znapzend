@@ -1,0 +1,13 @@
+HOSTS:
+  debian-9-x64:
+    roles:
+      - master
+    platform: debian-9-amd64
+    box: debian/stretch64
+    box_url: https://app.vagrantup.com/debian/boxes/stretch64
+    box_version: ">=9.9"
+    hypervisor: vagrant
+CONFIG:
+  log_level: verbose
+  type: foss
+  vagrant_memsize: 4096

@@ -1,0 +1,13 @@
+HOSTS:
+  debian-10-x64:
+    roles:
+      - master
+    platform: debian-10-amd64
+    box: debian/buster64
+    box_url: https://app.vagrantup.com/debian/boxes/buster64
+    box_version: ">=10.0"
+    hypervisor: vagrant
+CONFIG:
+  log_level: verbose
+  type: foss
+  vagrant_memsize: 4096
