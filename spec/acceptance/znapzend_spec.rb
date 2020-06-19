@@ -18,8 +18,8 @@ describe 'znapzend class' do
           yumrepo { 'zfs':
             ensure   => present,
             enabled  => '1',
-            descr    => 'ZFS on Linux for EL 7 - dkms',
-            baseurl  => 'http://download.zfsonlinux.org/epel/7/$basearch/',
+            descr    => 'ZFS on Linux for EL 7 - kABI',
+            baseurl  => "http://download.zfsonlinux.org/epel/7.${facts['os']['release']['minor']}/kmod/${facts['architecture']}/",
             gpgcheck => '0',
           }
         }
@@ -27,8 +27,8 @@ describe 'znapzend class' do
           yumrepo { 'zfs':
             ensure   => present,
             enabled  => '1',
-            descr    => 'ZFS on Linux for EL 6 - dkms',
-            baseurl  => 'http://download.zfsonlinux.org/epel/6/$basearch/',
+            descr    => 'ZFS on Linux for EL 6 - kABI',
+            baseurl  => 'http://download.zfsonlinux.org/epel/6/kmod/$basearch/',
             gpgcheck => '0',
           }
         }
@@ -36,12 +36,13 @@ describe 'znapzend class' do
           fail("${::operatingsystem} ${::operatingsystemmajrelease} not supported")
         }
       }
-      package { 'zfs':
+      package { [ 'zfs', 'wget', ]:
         ensure  => present,
         require => [ Package['kernel-devel'], Yumrepo['zfs'], ],
       }
       file { '/zdisks':
         ensure => directory,
+        seltype => 'default_t',
       }
       exec { 'load_kernel_module':
         command => '/sbin/modprobe zfs',
