@@ -39,8 +39,6 @@ class znapzend::config {
           }
         }
         '7': {
-          include ::systemd::systemctl::daemon_reload
-
           file { '/etc/systemd/system/znapzend.service':
             ensure  => present,
             owner   => 'root',
@@ -48,7 +46,7 @@ class znapzend::config {
             mode    => '0644',
             content => template($znapzend::service_systemd_template),
             require => File['/etc/default/znapzend'],
-          } ~> Class['systemd::systemctl::daemon_reload']
+          }
         }
         default: {
           fail("${::operatingsystem} ${::operatingsystemmajrelease} not supported")
