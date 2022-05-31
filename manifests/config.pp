@@ -38,7 +38,7 @@ class znapzend::config {
             unless      => "/bin/ls /etc/rc* | /bin/grep ${znapzend::service_name}",
           }
         }
-        '7': {
+        '7', '8': {
           file { '/etc/systemd/system/znapzend.service':
             ensure  => present,
             owner   => 'root',
