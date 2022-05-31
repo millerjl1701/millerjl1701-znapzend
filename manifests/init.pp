@@ -67,7 +67,7 @@ class znapzend (
   case $::osfamily {
     'RedHat': {
       case $::operatingsystemmajrelease {
-        '6', '7': {
+        '6', '7', '8': {
           contain znapzend::repos
           contain znapzend::prereqs
           contain znapzend::install
